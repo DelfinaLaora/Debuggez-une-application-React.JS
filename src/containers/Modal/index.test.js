@@ -9,16 +9,17 @@ describe("When Modal data is created", () => {
     render(
       <Modal opened Content={<div>modal content</div>}>
         {() => null}
-      </Modal>
+      </Modal>,
     );
     expect(screen.getByText("modal content")).toBeInTheDocument();
   });
   describe("and a click is triggered to display the modal", () => {
     it("the content of modal is displayed", async () => {
+      // it("the content of modal is displayed", () => {
       render(
         <Modal Content={<div>modal content</div>}>
           {() => <button data-testid="open-modal"></button>}
-        </Modal>
+        </Modal>,
       );
       expect(screen.queryByText("modal content")).not.toBeInTheDocument();
       fireEvent(
@@ -26,18 +27,18 @@ describe("When Modal data is created", () => {
         new MouseEvent("click", {
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
-
     });
   });
 
   describe("and a click is triggered to the close button modal", () => {
     it("the content of the modal is hide", async () => {
+      // it("the content of the modal is hide", () => {
       render(
         <Modal opened Content={<div>modal content</div>}>
           {() => null}
-        </Modal>
+        </Modal>,
       );
 
       expect(screen.getByText("modal content")).toBeInTheDocument();
@@ -46,7 +47,7 @@ describe("When Modal data is created", () => {
         new MouseEvent("click", {
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
 
       expect(screen.queryByText("modal content")).not.toBeInTheDocument();

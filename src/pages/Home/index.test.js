@@ -18,27 +18,30 @@ describe("When Form is created", () => {
         new MouseEvent("click", {
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
+      // const message = document.getElementsByClassName("ModalMessage--envoyer");
+
       await screen.findByText("En cours");
+      // await screen.findByText("Envoyer");
+
       await screen.findByText("Message envoyé !");
+      // await message.textContent.toEqual("Message envoyé !");
     });
   });
-
 });
-
 
 describe("When a page is created", () => {
   it("a list of events is displayed", () => {
     // to implement
-  })
+  });
   it("a list a people is displayed", () => {
     // to implement
-  })
+  });
   it("a footer is displayed", () => {
     // to implement
-  })
+  });
   it("an event card, with the last event, is displayed", () => {
     // to implement
-  })
+  });
 });
