@@ -15,15 +15,12 @@ import ModalEvent from "../../containers/ModalEvent";
 
 const Page = () => {
   const { data, error } = useData();
-  // eslint-disable-next-line
-  // console.log(data);
+
   const lastFilter = data?.events.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1,
   );
-  // eslint-disable-next-line
-  // console.log(lastFilter);
+
   const last = lastFilter?.[lastFilter.length - 1];
-  // console.log(last);
 
   return (
     <>
@@ -119,8 +116,6 @@ const Page = () => {
                 Content={
                   <div className="ModalMessage--success">
                     <div>Message envoyé !</div>
-
-                    {/* <div className="ModalMessage--envoyer">Message envoyé !</div> */}
                     <p>
                       Merci pour votre message nous tâcherons de vous répondre
                       dans les plus brefs délais
@@ -140,7 +135,7 @@ const Page = () => {
           <footer className="row">
             <div className="col presta">
               <h3>Notre dernière prestation</h3>
-              <Modal key={last?.id} Content={<ModalEvent event={last} />}>
+              <Modal key={last} Content={<ModalEvent event={last} />}>
                 {({ setIsOpened }) => (
                   <EventCard
                     onClick={() => setIsOpened(true)}

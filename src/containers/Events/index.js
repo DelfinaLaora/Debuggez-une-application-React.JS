@@ -14,62 +14,27 @@ const EventList = () => {
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredEvents = ((!type ? data?.events : data?.events) || []).filter(
-    (event, index) => {
-      if (
-        (currentPage - 1) * PER_PAGE <= index &&
-        PER_PAGE * currentPage > index
-      ) {
-        return true;
-      }
-      return false;
-    },
-  );
+  const typeList = new Set(data?.events.map((event) => event.type));
 
-  // const filteredEvents = (
-  //   (!type ? data?.events : data?.events.filter(type)) || []
-  // ).filter((event, index) => {
-  //   if (
-  //     (currentPage - 1) * PER_PAGE <= index &&
-  //     PER_PAGE * currentPage > index
-  //   ) if {
-  //     (event) => event.type === "conférence";
-  //   }
-
-  //   return true;
-  // });
-  // : data?.events.filter((event) => event.type === "conférence") || [];
-
-  // const fileType = ["conférence", "expérience digitale"];
-  // const i = "conférence";
-  // ********************
-  // const filtre = data?.events.filter((types) => types.type === "conférence");
-  // const filtre = data?.events.filter((types) => types.type === fileType[i]);
-
-  // console.log(filtre);
-
-  // const filteredEvents = !type
-  //   ? data?.events.filter((index) => {
-  //       if (
-  //         (currentPage - 1) * PER_PAGE <= index &&
-  //         PER_PAGE * currentPage > index
-  //       ) {
-  //         return true;
-  //       }
-  //       return false;
-  //     })
-  //   : data?.events.filter((event) => event.type === "conférence");
-  // {
-  //   return true;
-  // }
+  const filteredEvents = !type
+    ? data?.events.filter((event, index) => {
+        if (
+          (currentPage - 1) * PER_PAGE <= index &&
+          PER_PAGE * currentPage > index
+        ) {
+          return true;
+        }
+        return false;
+      })
+    : data?.events.filter((event) => event.type === type);
 
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
   };
+
   const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
-  const typeList = new Set(data?.events.map((event) => event.type));
-  // console.log(filteredEvents);
+
   return (
     <>
       {error && <div>An error occured</div>}
@@ -83,7 +48,7 @@ const EventList = () => {
             onChange={(value) => (value ? changeType(value) : changeType(null))}
           />
           <div id="events" className="ListContainer">
-            {filteredEvents.map((event) => (
+            {filteredEvents?.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
                 {({ setIsOpened }) => (
                   <EventCard
