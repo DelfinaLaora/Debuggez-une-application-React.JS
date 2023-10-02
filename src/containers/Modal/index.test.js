@@ -15,7 +15,6 @@ describe("When Modal data is created", () => {
   });
   describe("and a click is triggered to display the modal", () => {
     it("the content of modal is displayed", async () => {
-      // it("the content of modal is displayed", () => {
       render(
         <Modal Content={<div>modal content</div>}>
           {() => <button data-testid="open-modal"></button>}
@@ -34,7 +33,6 @@ describe("When Modal data is created", () => {
 
   describe("and a click is triggered to the close button modal", () => {
     it("the content of the modal is hide", async () => {
-      // it("the content of the modal is hide", () => {
       render(
         <Modal opened Content={<div>modal content</div>}>
           {() => null}

@@ -16,11 +16,13 @@ import ModalEvent from "../../containers/ModalEvent";
 const Page = () => {
   const { data, error } = useData();
 
-  const lastFilter = data?.events.sort((evtA, evtB) =>
-    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1,
-  );
+  const firstLast =
+    data &&
+    data.events.sort((evtA, evtB) =>
+      new Date(evtA.date) < new Date(evtB.date) ? -1 : 1,
+    );
 
-  const last = lastFilter?.[lastFilter.length - 1];
+  const lastEvent = firstLast?.[firstLast.length - 1];
 
   return (
     <>
@@ -135,18 +137,23 @@ const Page = () => {
           <footer className="row">
             <div className="col presta">
               <h3>Notre dernière prestation</h3>
-              <Modal key={last} Content={<ModalEvent event={last} />}>
-                {({ setIsOpened }) => (
-                  <EventCard
-                    onClick={() => setIsOpened(true)}
-                    imageSrc={last?.cover}
-                    title={last?.title}
-                    date={new Date(last?.date)}
-                    small
-                    label="boom"
-                  />
-                )}
-              </Modal>
+              {lastEvent && (
+                <Modal
+                  key={lastEvent}
+                  Content={<ModalEvent event={lastEvent} />}
+                >
+                  {({ setIsOpened }) => (
+                    <EventCard
+                      onClick={() => setIsOpened(true)}
+                      imageSrc={lastEvent.cover}
+                      title={lastEvent.title}
+                      date={new Date(lastEvent.date)}
+                      small
+                      label="boom"
+                    />
+                  )}
+                </Modal>
+              )}
             </div>
             <div className="col contact">
               <h3>Contactez-nous</h3>

@@ -15,18 +15,19 @@ const EventList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const typeList = new Set(data?.events.map((event) => event.type));
+  const pagination = (event, index) => {
+    if (
+      (currentPage - 1) * PER_PAGE <= index &&
+      PER_PAGE * currentPage > index
+    ) {
+      return true;
+    }
+    return false;
+  };
 
   const filteredEvents = !type
-    ? data?.events.filter((event, index) => {
-        if (
-          (currentPage - 1) * PER_PAGE <= index &&
-          PER_PAGE * currentPage > index
-        ) {
-          return true;
-        }
-        return false;
-      })
-    : data?.events.filter((event) => event.type === type);
+    ? data?.events.filter(pagination)
+    : data?.events.filter((event) => event.type === type).filter(pagination);
 
   const changeType = (evtType) => {
     setCurrentPage(1);

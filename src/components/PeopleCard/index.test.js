@@ -4,9 +4,12 @@ import PeopleCard from "./index";
 describe("When a people card is created", () => {
   it("an image is display with alt value", () => {
     render(
-      <PeopleCard imageSrc="http://src-image" imageAlt="image-alt-text" 
-      name="test name"
-      position="test position" />
+      <PeopleCard
+        imageSrc="http://src-image"
+        imageAlt="image-alt-text"
+        name="test name"
+        position="test position"
+      />,
     );
     const imageElement = screen.getByTestId("card-image-testid");
     expect(imageElement).toBeInTheDocument();
@@ -19,7 +22,7 @@ describe("When a people card is created", () => {
         imageAlt="image-alt-text"
         name="test name"
         position="test position"
-      />
+      />,
     );
     const nameElement = screen.getByText(/test name/);
     const titleElement = screen.getByText(/test position/);

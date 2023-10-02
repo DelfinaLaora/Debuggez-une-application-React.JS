@@ -27,14 +27,14 @@ describe("When a select is created", () => {
     it("a list of values is displayed", () => {
       render(<Select selection={["value1", "value2"]} />);
       const collapseButtonElement = screen.getByTestId(
-        "collapse-button-testid"
+        "collapse-button-testid",
       );
       fireEvent(
         collapseButtonElement,
         new MouseEvent("click", {
           bubbles: true,
           cancelable: true,
-        })
+        }),
       );
       const choice1 = screen.getByText("value1");
       const choice2 = screen.getByText("value2");
@@ -46,14 +46,14 @@ describe("When a select is created", () => {
         const onChange = jest.fn();
         render(<Select selection={["value1", "value2"]} onChange={onChange} />);
         const collapseButtonElement = screen.getByTestId(
-          "collapse-button-testid"
+          "collapse-button-testid",
         );
         fireEvent(
           collapseButtonElement,
           new MouseEvent("click", {
             bubbles: true,
             cancelable: true,
-          })
+          }),
         );
         const choice1 = screen.getByText("value1");
         fireEvent(
@@ -61,7 +61,7 @@ describe("When a select is created", () => {
           new MouseEvent("click", {
             bubbles: true,
             cancelable: true,
-          })
+          }),
         );
         expect(onChange.mock.calls.length).toBeGreaterThan(0);
 
@@ -70,7 +70,7 @@ describe("When a select is created", () => {
           new MouseEvent("click", {
             bubbles: true,
             cancelable: true,
-          })
+          }),
         );
 
         const choiceAll = screen.getByText("Toutes");
@@ -79,7 +79,7 @@ describe("When a select is created", () => {
           new MouseEvent("click", {
             bubbles: true,
             cancelable: true,
-          })
+          }),
         );
         expect(onChange.mock.calls.length).toBeGreaterThan(1);
       });

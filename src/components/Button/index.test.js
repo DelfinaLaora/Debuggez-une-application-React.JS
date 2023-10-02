@@ -22,7 +22,7 @@ describe("When a button is created", () => {
         new MouseEvent("click", {
           bubbles: true,
           cancelable: true,
-        })
+        }),
       );
       expect(onClick.mock.calls.length).toBeGreaterThan(0);
     });

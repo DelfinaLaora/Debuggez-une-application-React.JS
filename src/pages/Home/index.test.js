@@ -1,5 +1,44 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { DataProvider } from "../../contexts/DataContext";
+import PeopleCard from "../../components/PeopleCard";
 import Home from "./index";
+import ServiceCard from "../../components/ServiceCard";
+import EventCard from "../../components/EventCard";
+
+const data = {
+  events: [
+    {
+      id: 1,
+      type: "soirée entreprise",
+      date: "2022-08-29T20:28:45.744Z",
+      title: "Conférence #productCON",
+      cover: "/images/stem-list-EVgsAbL51Rk-unsplash.png",
+      description:
+        "Présentation des outils analytics aux professionnels du secteur",
+      nb_guesses: 1300,
+      periode: "24-25-26 Février",
+      prestations: [
+        "1 espace d’exposition",
+        "1 scéne principale",
+        "2 espaces de restaurations",
+        "1 site web dédié",
+      ],
+    },
+
+    {
+      id: 2,
+      type: "forum",
+      date: "2022-03-29T20:28:45.744Z",
+      title: "Forum #productCON",
+      cover: "/images/stem-list-EVgsAbL51Rk-unsplash.png",
+      description:
+        "Présentation des outils analytics aux professionnels du secteur",
+      nb_guesses: 1300,
+      periode: "24-25-26 Février",
+      prestations: ["1 espace d’exposition", "1 scéne principale"],
+    },
+  ],
+};
 
 describe("When Form is created", () => {
   it("a list of fields card is displayed", async () => {
@@ -20,27 +59,56 @@ describe("When Form is created", () => {
           bubbles: true,
         }),
       );
-      // const message = document.getElementsByClassName("ModalMessage--envoyer");
 
       await screen.findByText("En cours");
-      // await screen.findByText("Envoyer");
-
       await screen.findByText("Message envoyé !");
-      // await message.textContent.toEqual("Message envoyé !");
     });
   });
 });
 
 describe("When a page is created", () => {
-  it("a list of events is displayed", () => {
+  it("a list of events is displayed", async () => {
     // to implement
+    render(
+      <DataProvider>
+        <ServiceCard
+          imageSrc="/images/priscilla-du-preez-Q7wGvnbuwj0-unsplash1.png"
+          children="Soirée d’entreprise"
+        />
+      </DataProvider>,
+    );
+    const children = await screen.findByText("Soirée d’entreprise");
+    const image = screen.getByTestId("card-image-testid");
+    expect(children).toBeInTheDocument();
+    expect(image).toBeInTheDocument();
   });
-  it("a list a people is displayed", () => {
+
+  it("a list a people is displayed", async () => {
     // to implement
+    render(
+      <DataProvider>
+        <PeopleCard
+          imageSrc="/images/stephanie-liverani-Zz5LQe-VSMY-unsplash.png"
+          name="Samira"
+          position="CEO"
+        />
+      </DataProvider>,
+    );
+
+    const namePeople = await screen.findByText("Samira");
+    const image = screen.getByTestId("card-image-testid");
+    expect(namePeople).toBeInTheDocument();
+    expect(image).toBeInTheDocument();
   });
+
   it("a footer is displayed", () => {
     // to implement
+    render(<Home />);
+    screen.findByText("Notre dernière prestation");
+    screen.findByText("Contactez-nous");
+    screen.findByText("contact@77events.com");
   });
+
   it("an event card, with the last event, is displayed", () => {
     // to implement
   });

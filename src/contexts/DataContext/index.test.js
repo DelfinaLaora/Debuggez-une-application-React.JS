@@ -11,7 +11,7 @@ describe("When a data context is created", () => {
     render(
       <DataProvider>
         <Component />
-      </DataProvider>
+      </DataProvider>,
     );
     const dataDisplayed = await screen.findByText("ok");
     expect(dataDisplayed).toBeInTheDocument();
@@ -28,7 +28,7 @@ describe("When a data context is created", () => {
       render(
         <DataProvider>
           <Component />
-        </DataProvider>
+        </DataProvider>,
       );
       const dataDisplayed = await screen.findByText("error on calling events");
       expect(dataDisplayed).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe("When a data context is created", () => {
     global.fetch = jest.fn().mockResolvedValue(() =>
       Promise.resolve({
         json: () => Promise.resolve({ rates: { CAD: 1.42 } }),
-      })
+      }),
     );
     const Component = () => {
       const { error } = useData();
@@ -48,7 +48,7 @@ describe("When a data context is created", () => {
     render(
       <DataProvider>
         <Component />
-      </DataProvider>
+      </DataProvider>,
     );
   });
 });

@@ -18,7 +18,7 @@ describe("When Menu is created", () => {
         new MouseEvent("click", {
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
       expect(window.document.location.hash).toEqual("#contact");
     });
