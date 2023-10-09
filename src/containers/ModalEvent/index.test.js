@@ -24,7 +24,7 @@ describe("When Modal data is created", () => {
     await screen.findByText("1 espace d’exposition");
     await screen.findByText("24-25-26 Février");
     await screen.findByText(
-      "Présentation des outils analytics aux professionnels du secteur"
+      "Présentation des outils analytics aux professionnels du secteur",
     );
     await screen.findByText("Conférence #productCON");
   });

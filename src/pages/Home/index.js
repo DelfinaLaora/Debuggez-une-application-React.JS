@@ -22,6 +22,10 @@ const Page = () => {
       new Date(evtA.date) < new Date(evtB.date) ? -1 : 1,
     );
 
+  // const firstLast = data?.events.sort((evtA, evtB) =>
+  //   new Date(evtA.date) < new Date(evtB.date) ? -1 : 1,
+  // );
+
   const lastEvent = firstLast?.[firstLast.length - 1];
 
   return (
@@ -139,7 +143,7 @@ const Page = () => {
               <h3>Notre dernière prestation</h3>
               {lastEvent && (
                 <Modal
-                  key={lastEvent}
+                  key={lastEvent.id}
                   Content={<ModalEvent event={lastEvent} />}
                 >
                   {({ setIsOpened }) => (
