@@ -7,7 +7,7 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-
+  const [checked, setChecked] = useState(true);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) > new Date(evtB.date) ? -1 : 1,
   );
@@ -36,7 +36,6 @@ const Slider = () => {
               <h3>{event.title}</h3>
               <p>{event.description}</p>
               <div>{getMonth(new Date(event.date))}</div>
-              {/* <div>{Date.prototype.getMonth(new Date(event.date))}</div> */}
             </div>
           </div>
         </div>
@@ -49,7 +48,7 @@ const Slider = () => {
               type="radio"
               name="radio-button"
               checked={radioIdx === index}
-              onChange={() => {}}
+              onChange={() => setChecked(!checked)}
             />
           ))}
         </div>

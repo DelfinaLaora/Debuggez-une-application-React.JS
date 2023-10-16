@@ -29,7 +29,6 @@ const Form = ({ onSuccess, onError }) => {
     },
     [(onSuccess, onError)],
   );
-  // const reset = document.getElementById("form").reset();
   return (
     <form onSubmit={sendContact} id="form">
       <div className="row">
@@ -44,7 +43,6 @@ const Form = ({ onSuccess, onError }) => {
             titleEmpty
           />
           <Field placeholder="" label="Email" />
-          {/* <Button type={BUTTON_TYPES.SUBMIT} disabled={sending} reset={reset}> */}
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
           </Button>

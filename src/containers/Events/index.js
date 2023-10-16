@@ -15,6 +15,7 @@ const EventList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const typeList = new Set(data?.events.map((event) => event.type));
+
   const pagination = (event, index) => {
     if (
       (currentPage - 1) * PER_PAGE <= index &&
